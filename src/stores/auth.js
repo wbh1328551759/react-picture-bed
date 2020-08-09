@@ -1,5 +1,6 @@
 import { observable, action} from 'mobx'
 import { Auth } from '../models'
+import UserStore from './user'
 
 class AuthStore{
   @observable values = {
@@ -18,8 +19,10 @@ class AuthStore{
   @action login(){
     return new Promise((resolve, reject) => {
       Auth.login(this.values.username, this.values.password).then(user => {
+        UserStore.pullUser()
         resolve(user)
       }).catch(error => {
+        UserStore.resetUser()
         reject(error)
       })
     })
@@ -29,9 +32,10 @@ class AuthStore{
     return new Promise((resolve, reject) => {
       Auth.register(this.values.username, this.values.password)
         .then(user => {
+          UserStore.pullUser()
           resolve(user)
         }).catch(error => {
-          console.log('错误')
+          UserStore.resetUser()
           reject(error)
       })
     })
@@ -39,6 +43,7 @@ class AuthStore{
 
   @action logout(){
     Auth.logout()
+    UserStore.resetUser()
   }
 }
 
