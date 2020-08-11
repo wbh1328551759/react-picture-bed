@@ -2,6 +2,7 @@ import {observable, action} from 'mobx'
 import {Uploader} from '../models'
 import { message } from 'antd'
 
+
 class ImageStore {
   @observable filename = ''
   @observable file = null
@@ -30,7 +31,11 @@ class ImageStore {
           this.isUploading = false
         })
     })
+  }
 
+  @action reset(){
+    this.isUploading = false
+    this.serverFile = null
   }
 }
 

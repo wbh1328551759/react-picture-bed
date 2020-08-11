@@ -1,4 +1,4 @@
-import AV, { Query, User } from 'leancloud-storage'
+import AV, { User } from 'leancloud-storage'
 
 AV.init({
   appId: "XLoqMObGz7wzYW5qgyVwXtFg-gzGzoHsz",
@@ -47,7 +47,7 @@ const Uploader = {
     const query = new AV.Query('Image')
     query.include('owner')
     query.limit(limit)
-    query.skip(page+limit)
+    query.skip(page*limit)
     query.equalTo('owner', AV.User.current())
     query.descending('createdAt')
     return new Promise((resolve, reject) => {

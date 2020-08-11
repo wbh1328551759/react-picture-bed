@@ -4,9 +4,8 @@ import App from './App';
 import 'antd/dist/antd.css';
 import * as serviceWorker from './serviceWorker';
 import {
-  BrowserRouter as Router
+  HashRouter as Router
 } from 'react-router-dom';
-import Model from './models/index'
 
 ReactDOM.render(
     <Router>
@@ -14,6 +13,5 @@ ReactDOM.render(
     </Router>,
   document.getElementById('root')
 );
-
 
 serviceWorker.unregister();
