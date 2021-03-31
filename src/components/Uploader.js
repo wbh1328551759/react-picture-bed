@@ -61,10 +61,10 @@ const Component = observer(() => {
         message.warning('请先登录再上传！', 3)
         return false
       }
-//       if (!/(svg$)|(png$)|(jpg$)|(jpeg$)|(gif$)/ig.test(file.type)) {
-//         message.error('只能上传 png/svg/jpg/jpeg/gif 格式的图片')
-//         return false
-//       }
+      if (!/(svg$)|(png$)|(jpg$)|(jpeg$)|(gif$)/ig.test(file.type)) {
+        message.error('只能上传 png/svg/jpg/jpeg/gif 格式的图片')
+        return false
+      }
       if (file.size > 1024 * 1024) {
         message.error('图片大小不能超过1M')
         return false
